@@ -18,7 +18,7 @@ export const DeleteModal = ({ isOpen, onClose, onDelete }: DeleteModalProps) => 
         <Modal isOpen={isOpen} onClose={onClose}>
             <div className="delete-modal">
                 <p>Точно удалить задачу?</p>
-                <div className="delete-modal-actions">
+                <div className="delete-modal__actions">
                     <Button title="Удалить" onClick={handleDelete} />
                     <Button title="Отмена" outline onClick={onClose} />
                 </div>
