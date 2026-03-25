@@ -87,7 +87,7 @@ export const TodoList = () => {
                 </div>
             </div>
 
-            {showAddEditModal && (
+            {Boolean(showAddEditModal) && (
                 <AddEditTaskModal
                     isOpen={showAddEditModal}
                     onClose={closeAddEditModal}
@@ -98,7 +98,7 @@ export const TodoList = () => {
                 />
             )}
 
-            {showDeleteModal && (
+            {Boolean(showDeleteModal) && (
                 <DeleteModal
                     isOpen={showDeleteModal}
                     onClose={closeDeleteModal}

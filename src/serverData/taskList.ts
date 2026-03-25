@@ -26,7 +26,7 @@ export const taskList: Array<Task> = [
   },
   {
     id: '04',
-    title: 'Запланить за квартиру',
+    title: 'Заплатить за квартиру',
     priority: Priority.HIGH,
     status: Status.DONE,
     progress: 100,
