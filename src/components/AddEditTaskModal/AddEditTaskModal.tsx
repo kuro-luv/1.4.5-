@@ -17,13 +17,13 @@ interface AddEditTaskModalProps {
 }
 
 export const AddEditTaskModal = ({
-                                     isOpen,
-                                     onClose,
-                                     onAdd,
-                                     onEdit,
-                                     mode = 'add',
-                                     initialData
-                                 }: AddEditTaskModalProps) => {
+       isOpen,
+       onClose,
+       onAdd,
+       onEdit,
+       mode = 'add',
+       initialData
+       }: AddEditTaskModalProps) => {
     const [title, setTitle] = useState('');
     const [selectedPriority, setSelectedPriority] = useState<string>('medium');
 
@@ -90,7 +90,7 @@ export const AddEditTaskModal = ({
                                     )}
                                     onClick={() => setSelectedPriority(priority)}
                                 >
-                                    {priorityLabels[priority]}
+                                    {priorityLabels[priority as Priority]}
                                 </li>
                             ))}
                         </ul>

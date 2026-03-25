@@ -6,10 +6,9 @@ interface DeleteModalProps {
     isOpen: boolean;
     onClose: () => void;
     onDelete: () => void;
-    taskTitle?: string;
 }
 
-export const DeleteModal = ({ isOpen, onClose, onDelete, taskTitle }: DeleteModalProps) => {
+export const DeleteModal = ({ isOpen, onClose, onDelete }: DeleteModalProps) => {
     const handleDelete = () => {
         onDelete();
         onClose();

@@ -1,4 +1,4 @@
-export enum Prioroty {
+export enum Priority {
   LOW = 'low', // Низкий
   MEDIUM = 'medium', // Средний
   HIGH = 'high', // Высокий
@@ -12,10 +12,10 @@ export enum Status {
 
 //ru names mapa
 
-export const priorityLabels: Record<Prioroty, string> = {
-    [Prioroty.LOW]: 'Низкий',
-    [Prioroty.MEDIUM]: 'Средний',
-    [Prioroty.HIGH]: 'Высокий',
+export const priorityLabels: Record<Priority, string> = {
+    [Priority.LOW]: 'Низкий',
+    [Priority.MEDIUM]: 'Средний',
+    [Priority.HIGH]: 'Высокий',
 };
 
 export const statusLabels: Record<Status, string> = {
@@ -27,7 +27,7 @@ export const statusLabels: Record<Status, string> = {
 export type Task = {
     id: string;
     title: string;
-    priority: Prioroty;
+    priority: Priority;
     status: Status;
     progress: number;
 };

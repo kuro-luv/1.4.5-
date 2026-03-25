@@ -12,7 +12,7 @@ interface TaskCardProps {
 }
 
 export const TaskCard = ({ task, onDelete, onEdit }: TaskCardProps) => {
-    const { id, title, priority, status, progress } = task;
+    const { title, priority, status, progress } = task;
 
     return (
         <div className="task-card">

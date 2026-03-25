@@ -3,14 +3,24 @@ import { ReactNode } from 'react'
 
 interface ModalProps {
     children: ReactNode;
+    isOpen: boolean;
+    onClose: () => void;
 }
 
-export const Modal = ({ children }: ModalProps) => {
-  return (
-    <div className="modal">
-      <div className="modal-content">{children}</div>
-    </div>
-  )
-}
+export const Modal = ({ children, isOpen, onClose }: ModalProps) => {
+    if (!isOpen) return null;
 
-export default Modal
+    const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (e.target === e.currentTarget) {
+            onClose();
+        }
+    };
+
+    return (
+        <div className="modal" onClick={handleOverlayClick}>
+            <div className="modal-content">{children}</div>
+        </div>
+    );
+};
+
+export default Modal;
