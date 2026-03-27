@@ -1,4 +1,4 @@
-import "./style.scss"
+import styles from "./style.module.scss"
 
 interface Props {
   strokeWidth: number
@@ -13,16 +13,16 @@ export const CircularProgressBar = ({ strokeWidth, sqSize, percentage }: Props) 
   const dashOffset = dashArray - (dashArray * (percentage || 0)) / 100
 
   return (
-    <svg width={sqSize} height={sqSize} viewBox={viewBox} className="circular-progressbar">
+    <svg width={sqSize} height={sqSize} viewBox={viewBox} className={styles.circularProgressbar}>
       <circle
-        className="circle-background"
+        className={styles.circleBackground}
         cx={sqSize / 2}
         cy={sqSize / 2}
         r={radius}
         strokeWidth={`${strokeWidth}px`}
       />
       <circle
-        className="circle-progress"
+        className={styles.circleProgress}
         cx={sqSize / 2}
         cy={sqSize / 2}
         r={radius}

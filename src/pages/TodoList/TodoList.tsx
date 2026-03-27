@@ -1,4 +1,4 @@
-import './style.scss';
+import styles from './style.module.scss';
 import Add from '../../assets/icons/add.svg?react';
 import { AddEditTaskModal } from '../../components/AddEditTaskModal/AddEditTaskModal.tsx';
 import { Button } from '../../components/Button/Button.tsx';
@@ -68,20 +68,29 @@ export const TodoList = () => {
         }
     };
 
+    const handleStatusChange = (taskId: string, newStatus: Status) => {
+        setTasks(tasks.map(task =>
+            task.id === taskId
+                ? { ...task, status: newStatus }
+                : task
+        ));
+    };
+
     return (
         <>
-            <div className="page-wrapper">
-                <div className="top-title">
+            <div className={styles.pageWrapper}>
+                <div className={styles.topTitle}>
                     <h2>Список задач</h2>
                     <Button title="Добавить задачу" icon={<Add />} onClick={openAddModal} />
                 </div>
-                <div className="task-container">
+                <div className={styles.taskContainer}>
                     {tasks.map((task) => (
                         <TaskCard
                             key={task.id}
                             task={task}
                             onDelete={openDeleteModal}
                             onEdit={openEditModal}
+                            onStatusChange={handleStatusChange}
                         />
                     ))}
                 </div>

@@ -3,7 +3,7 @@ import Close from '../../assets/icons/close.svg?react';
 import { Button } from '../Button/Button.tsx';
 import { Input } from '../Input/Input.tsx';
 import { Modal } from '../Modal/Modal.tsx';
-import './style.scss';
+import styles from './style.module.scss';
 import { priorityLabels, Priority } from '../../types/types.ts';
 import { useState, useEffect } from 'react';
 
@@ -16,18 +16,10 @@ interface AddEditTaskModalProps {
     initialData?: { title: string; priority: string } | null;
 }
 
-export const AddEditTaskModal = ({
-       isOpen,
-       onClose,
-       onAdd,
-       onEdit,
-       mode = 'add',
-       initialData
-       }: AddEditTaskModalProps) => {
+export const AddEditTaskModal = ({ isOpen, onClose, onAdd, onEdit, mode = 'add', initialData }: AddEditTaskModalProps) => {
     const [title, setTitle] = useState('');
-    const [selectedPriority, setSelectedPriority] = useState<string>('medium');
+    const [selectedPriority, setSelectedPriority] = useState('medium');
 
-    // 👈 заполняем форму при редактировании
     useEffect(() => {
         if (initialData && mode === 'edit') {
             setTitle(initialData.title);
@@ -35,7 +27,6 @@ export const AddEditTaskModal = ({
         }
     }, [initialData, mode]);
 
-    // 👈 сброс формы при открытии/закрытии
     useEffect(() => {
         if (!isOpen) {
             setTitle('');
@@ -46,10 +37,10 @@ export const AddEditTaskModal = ({
         }
     }, [isOpen, mode]);
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (title.trim()) {
-            if (mode === 'edit' && onEdit) {
+    const handleSubmit = (event: React.FormEvent) => {
+        event.preventDefault();
+        if (title.length > 0) {
+            if (onEdit && mode === 'edit') {
                 onEdit({ title, priority: selectedPriority });
             } else if (onAdd) {
                 onAdd({ title, priority: selectedPriority });
@@ -66,27 +57,27 @@ export const AddEditTaskModal = ({
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <form onSubmit={handleSubmit}>
-                <div className="add-edit-modal">
+                <div className={styles.addEditModal}>
                     <div className="flx-between">
-                        <span className="modal-title">{modalTitle}</span>
+                        <span className={styles.modalTitle}>{modalTitle}</span>
                         <Close className="cp" onClick={onClose} />
                     </div>
                     <Input
                         label="Задача"
                         placeholder="Введите текст.."
-                        onChange={(e) => setTitle(e.target.value)}
+                        onChange={(event) => setTitle(event.target.value)}
                         name="title"
                         value={title}
                     />
-                    <div className="modal-priority">
+                    <div className={styles.modalPriority}>
                         <span>Приоритет</span>
-                        <ul className="priority-buttons">
+                        <ul className={styles.priorityButtons}>
                             {['high', 'medium', 'low'].map((priority) => (
                                 <li
                                     key={priority}
                                     className={classNames(
-                                        priority,
-                                        selectedPriority === priority && `${priority}-selected`
+                                        styles[priority],
+                                        selectedPriority === priority && styles[`${priority}-selected`]
                                     )}
                                     onClick={() => setSelectedPriority(priority)}
                                 >

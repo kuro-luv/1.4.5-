@@ -1,8 +1,8 @@
 @use '../../styles/index' as *;
 @use '../../styles/breakpoints' as breakpoints;
 
-.add-edit-modal {
-  .modal-title {
+.addEditModal {
+  .modalTitle {
     font-size: 22px;
     font-weight: 700;
     color: #121212;
@@ -10,7 +10,7 @@
   }
 }
 
-.modal-priority {
+.modalPriority {
   margin-top: 20px;
   span {
     font-size: 14px;
@@ -19,7 +19,7 @@
   }
 }
 
-.priority-buttons {
+.priorityButtons {
   display: flex;
   gap: 13px;
   margin-top: 12px;
