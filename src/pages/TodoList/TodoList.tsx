@@ -17,7 +17,6 @@ export const TodoList = () => {
 
     const openAddModal = () => setShowAddEditModal(true);
 
-
     const closeAddEditModal = () => {
         setShowAddEditModal(false);
         setTaskToEdit(null);
@@ -69,11 +68,23 @@ export const TodoList = () => {
     };
 
     const handleStatusChange = (taskId: string, newStatus: Status) => {
-        setTasks(tasks.map(task =>
-            task.id === taskId
-                ? { ...task, status: newStatus }
-                : task
-        ));
+        setTasks(prevTasks =>
+            prevTasks.map(task => {
+                if (task.id !== taskId) return task;
+
+                let newProgress = task.progress;
+
+                if (newStatus === Status.DONE) {
+                    newProgress = 100;
+                } else if (newStatus === Status.TODO) {
+                    newProgress = 0;
+                } else if (newStatus === Status.PROGRESS && task.progress === 0) {
+                    newProgress = 50;
+                }
+
+                return { ...task, status: newStatus, progress: newProgress };
+            })
+        );
     };
 
     return (
